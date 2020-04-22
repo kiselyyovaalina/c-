@@ -1,0 +1,265 @@
+#include <iostream>
+#include <cstdlib>
+#include <cmath>
+using namespace std;
+double determ(double** Arr, int size);
+
+double power(int a, int b)
+{
+    int i = b;
+    int k = 1;
+
+            if (b > 0)
+            {
+                k=a*power(a, b-1);
+
+            }
+return k;
+}
+void multAB(double** a, double** b, double** x,int row1,int col1, int row2, int col2)
+{
+  for (int i = 0; i < row1; i++)
+  {
+    x[i] = new double[col2];
+    for (int j = 0; j < col2; j++)
+    {
+      x[i][j] = 0;
+      for (int k = 0; k < col1; k++)
+        x[i][j] += a[i][k] * b[k][j];
+    }
+  }
+}
+
+int minor (double**m ,int row1)
+  {
+       int k;
+
+
+          for (int i=0; i<row1; i++)
+       {
+          for (int j=i; j<row1; j++)
+             {
+               k=m[i][j];
+               m[i][j]=m[j][i];
+               m[j][i]=k;
+              }
+         }
+          for (int i=0; i<row1-1; i++)
+       {
+          for (int j=0; j<row1-1; j++)
+             {
+                    if (i==j)
+                    {
+                       k=m[i][j];
+               m[i][j]=m[i+1][j+1];
+               m[i+1][j+1]=k;
+                    }
+              }
+         }
+         return k;
+  };
+int trans (double**At ,int row1,int col1)
+  {
+    int k;
+    for (int i=0; i<row1; i++)
+       {
+          for (int j=i; j<col1; j++)
+             {
+               k=At[i][j];
+               At[i][j]=At[j][i];
+               At[j][i]=k;
+              }
+         }
+         return k;
+  };
+int main()
+{
+  int row1, row2, col1, col2;
+  double** a, ** b, ** x, ** Aa,**m;
+  system("chcp 1251");
+  system("color 8B");
+  system("cls");
+  int number;
+   cout<<"Выберите 1)AX=B или 2)XA=B"<<" ";
+   while (number>2 or number<1)
+   {
+    cin>>number;
+    if (number>2 or number<1)
+    {
+        cout<<"введите снова, такой команды нет"<<endl;
+    }
+   }
+  cout << "Введите количество строк первой матрицы: ";
+  cin >> row1;
+  cout << "Введите количество столбцов первой матрицы: ";
+  cin >> col1;
+
+    // Ввод элементов первой матрицы
+  a = new double* [row1];
+  b = new double* [row2];
+  m = new double* [row1];
+  x = new double* [row1];
+  Aa = new double* [row1];
+  cout << "Введите элементы первой матрицы" << endl;
+  for (int i = 0; i < row1; i++)
+  {
+    a[i] = new double[col1];
+    for (int j = 0; j < col1; j++)
+    {
+      cout << "a[" << i << "][" << j << "]= ";
+      cin >> a[i][j];
+    }
+  }
+
+
+  for (int i = 0; i < row1; i++)
+  {
+    m[i] = new double[col1];
+    for (int j = 0; j < col1; j++)
+    {
+      m[i][j] = a[i][j];
+    }
+  }
+  // Вывод элементов первой матрицы
+  for (int i = 0; i < row1; i++)
+  {
+    for (int j = 0; j < col1; j++)
+      cout << a[i][j] << " ";
+    cout << endl;
+  }
+
+
+  cout << "Введите количество строк второй матрицы: ";
+  cin >> row2;
+  cout << "Введите количество столбцов второй матрицы: ";
+  cin >> col2;
+  if (col1 != row2 or (row1!=row2 and col1!=col2))
+  {
+    cout << "No";
+    return 0;
+  }
+  // Ввод элементов второй матрицы
+  cout << "Введите элементы второй матрицы" << endl;
+  for (int i = 0; i < row2; i++)
+  {
+    b[i] = new double[col2];
+    for (int j = 0; j < col2; j++)
+    {
+      cout << "b[" << i << "][" << j << "]= ";
+      cin >> b[i][j];
+    }
+  }
+  // Вывод элементов второй матрицы
+  for (int i = 0; i < row2; i++)
+  {
+    for (int j = 0; j < col2; j++)
+    {
+      cout << b[i][j] << " ";
+    }
+    cout << endl;
+  }
+  // Умножение матриц
+  int determm = determ(a,row1);//Определитель матрицы n-ого порядка
+  cout<<"Определитель матрицы: "<<determm<<endl;
+  cout<<" "<<endl;
+if (determm==0)
+{
+    cout<<"No";
+    return 0;
+}
+cout<<"Минор функции: "<<endl;
+   minor(m,row1);//M минор функции
+  for (int i=0;i<row1;i++)
+  {
+      for (int j=0;j<row1;j++)
+      {
+          cout<<m[i][j]<<" ";
+      }
+      cout<<""<<endl;
+  }
+cout<<"A->: "<<endl;
+int h=0;
+for (int i=0;i<row1;i++)
+  {
+       Aa[i] = new double[col1];
+      for (int j=0;j<row1;j++)
+      {
+          h=power(-1, (i+j))*m[i][j];
+          Aa[i][j] = h;
+          cout<<Aa[i][j]<<" ";
+      }
+      cout<<""<<endl;
+  }
+
+
+  trans(Aa,row1,col1);
+  for (int i=0;i<row1;i++)
+  {
+      for (int j=0;j<row1;j++)
+      {
+          cout<<Aa[i][j]<<" ";
+      }
+      cout<<""<<endl;
+  }
+  cout<<"A-1: "<<endl;
+
+  float n=1.0/determm;
+
+if (number==1)
+{
+ multAB(Aa,b,x,row1,col1,row2,col2);//Умножение матриц
+}
+else if (number==2)
+{
+     multAB(b,Aa,x,row1,col1,row2,col2);
+}
+  cout<<" "<<endl;
+  cout<<""<<endl;
+  // Вывод матрицы произведения
+  cout << "Матрица произведения: " << endl;
+  for (int i = 0; i < row1; i++)
+  {
+    for (int j = 0; j < col2; j++)
+      cout << (n)*x[i][j] << " ";
+    cout << endl;
+  }
+
+
+
+  return 0;
+}
+double determ(double** Arr, int size)
+{
+        int i,j;
+        double det=0;
+        double** matr;
+        if(size==1)
+        {
+                det=Arr[0][0];
+        }
+        else if(size==2)
+        {
+                det=Arr[0][0]*Arr[1][1]-Arr[0][1]*Arr[1][0];
+        }
+        else
+        {
+                matr=new double*[size-1];
+                for(i=0;i<size;++i)
+                {
+                        for(j=0;j<size-1;++j)
+                        {
+                                if(j<i){
+                                        matr[j]=Arr[j];
+                                }
+
+                                else{
+                                        matr[j]=Arr[j+1];
+                                }
+
+                        }
+                        det+=pow((double)-1, (i+j))*determ(matr, size-1)*Arr[i][size-1];
+                }
+                delete[] matr;
+        }
+        return det;
+}

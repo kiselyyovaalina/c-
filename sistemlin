@@ -25,7 +25,7 @@ int main()
    if (number == 3)
   {
      int i, j, n, m;
-//создаем массив
+
    cout << "введи число уравнений: ";
          cin >> n;
          cout << "введи число неизвестных(x): ";
@@ -35,7 +35,7 @@ int main()
          for (i=0; i<n; i++)
              matr[i] = new double [m];
 
-//инициализируем
+
 
     for (i = 0; i<n; i++)
 
@@ -46,7 +46,7 @@ int main()
             cin >> matr[i][j];
 }
 
- //выводим массив
+
     cout << "matrix: " << endl;
       for (i=0; i<n; i++)
        {
@@ -56,8 +56,8 @@ int main()
        }
     cout << endl;
 
-//Метод Гаусса
-//Прямой ход, приведение к верхнетреугольному виду
+
+
     float  tmp;
     int k;
 float *dop = new float [m];
@@ -77,7 +77,7 @@ else{
   cout << "Введите количество столбцов первой матрицы: ";
   cin >> col1;
 
-    // Ввод элементов первой матрицы
+
   a = new double* [row1];
   b = new double* [row2];
   m = new double* [row1];
@@ -103,7 +103,7 @@ else{
       m[i][j] = a[i][j];
     }
   }
-  // Вывод элементов первой матрицы
+
   for (int i = 0; i < row1; i++)
   {
     for (int j = 0; j < col1; j++)
@@ -116,7 +116,7 @@ else{
   cin >> row2;
   cout << "Введите количество столбцов второй матрицы: ";
   cin >> col2;
-  // Ввод элементов второй матрицы
+
   cout << "Введите элементы второй матрицы" << endl;
   for (int i = 0; i < row2; i++)
   {
@@ -127,7 +127,7 @@ else{
       cin >> b[i][j];
     }
   }
-  // Вывод элементов второй матрицы
+
   for (int i = 0; i < row2; i++)
   {
     for (int j = 0; j < col2; j++)

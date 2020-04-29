@@ -6,8 +6,6 @@ using namespace std;
 
 int main()
 {
-  int row1, row2, col1, col2;
-  double** a, ** b, ** x, ** Aa,**m;
   system("chcp 1251");
   system("color 8B");
   system("cls");
@@ -22,7 +20,9 @@ int main()
         cout<<"введите снова, такой команды нет"<<endl;
     }
    }
-   if (number == 3)
+
+
+      if (number == 3)
   {
      int i, j, n, m;
 
@@ -71,13 +71,15 @@ float *dop = new float [m];
 
    return 0;
 }
-else{
+else if (number==2 or number==1){
+        int row1, row2, col1, col2;
+  double** a, ** b, ** x, ** Aa,**m;
     cout << "Введите количество строк первой матрицы: ";
   cin >> row1;
   cout << "Введите количество столбцов первой матрицы: ";
   cin >> col1;
 
-
+    // Ввод элементов первой матрицы
   a = new double* [row1];
   b = new double* [row2];
   m = new double* [row1];
@@ -103,7 +105,7 @@ else{
       m[i][j] = a[i][j];
     }
   }
-
+  // Вывод элементов первой матрицы
   for (int i = 0; i < row1; i++)
   {
     for (int j = 0; j < col1; j++)
@@ -116,7 +118,7 @@ else{
   cin >> row2;
   cout << "Введите количество столбцов второй матрицы: ";
   cin >> col2;
-
+  // Ввод элементов второй матрицы
   cout << "Введите элементы второй матрицы" << endl;
   for (int i = 0; i < row2; i++)
   {
@@ -127,7 +129,7 @@ else{
       cin >> b[i][j];
     }
   }
-
+  // Вывод элементов второй матрицы
   for (int i = 0; i < row2; i++)
   {
     for (int j = 0; j < col2; j++)
@@ -220,3 +222,4 @@ else if (number==2)
   return 0;
 }
 }
+

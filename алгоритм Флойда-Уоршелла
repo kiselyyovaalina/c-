@@ -1,0 +1,42 @@
+#include <cstdlib>
+#include <iostream>
+ using namespace std;
+
+int main(){
+    system("color 8F");
+    setlocale(LC_ALL, "Russian");
+    int n;
+    cout<<"Введите размер матрицы = "<<endl;
+    cin >> n;
+    int mas[n][n];
+    long long r = 0;
+    cout<<"Введите значения матрицы = "<<endl;
+    for( int i=0 ; i<n ; i++ ){
+        for( int j=0 ; j<n ; j++ ){
+            cin >> mas[i][j];
+        }
+    }
+    for( int k=0 ; k<n ; k++ ){
+        for( int i=0 ; i<n ; i++ ){
+            for( int j=0 ; j<n ; j++ ){
+                if(i != j && mas[i][k] != -1 && mas[k][j] != -1){
+                    if(mas[i][j] == -1){
+                        mas[i][j] = mas[i][k] + mas[k][j];
+                    }
+                        else
+                    {
+                        mas[i][j] = min(mas[i][j], mas[i][k] + mas[k][j]);
+                    }
+                }
+            }
+        }
+    }
+    for( int i=0 ; i<n ; i++ )
+    {
+        for( int j=0 ; j<n ; j++ )
+        {
+            if(mas[i][j] > r) {r = mas[i][j];}
+        }
+    }
+    cout <<"Кратчайшее расстояние: "<< r << endl;
+}

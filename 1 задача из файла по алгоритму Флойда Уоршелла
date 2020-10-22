@@ -1,0 +1,42 @@
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+const int Vmax=1000;
+int i, j, k;
+int Graf[Vmax][Vmax];
+
+void FU(int D[][Vmax], int V)
+{
+int k;
+for (i=0; i<V; i++) D[i][i]=0;
+
+for (k=0; k<V; k++)
+for (i=0; i<V; i++)
+for (j=0; j<V; j++)
+if (D[i][k] && D[k][j] && i!=j)
+if (D[i][k]+D[k][j]<D[i][j] || D[i][j]==0)
+D[i][j]=D[i][k]+D[k][j];
+
+for (i=0; i<V; i++)
+{
+for (j=0; j<V; j++) cout<<D[i][j]<<"\t";
+cout<<endl;
+}
+}
+
+int main()
+{
+setlocale(LC_ALL, "Rus");
+system("color 8F");
+cout<<"Ведите количество вершин в графе: ";
+cin>>k;
+cout<<"Введите матрицу весов ребер:\n";
+for (i=0; i<k; i++)
+for (j=0; j<k; j++)
+{
+cout<<"Graf["<<i<<"]["<<j<<"] : ";
+cin>>Graf[i][j];
+}
+cout<<"Матрица кратчайших путей:"<<endl;
+FU(Graf, k);
+}

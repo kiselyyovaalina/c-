@@ -1,7 +1,9 @@
 #include<iostream>
+#include <cstdlib>
 #define D 1000000000
 using namespace std;
 int main(){
+system("color 8F");
 int n,i,j,k,s,t,m;
 cin>>n>>m;
 if (m) {

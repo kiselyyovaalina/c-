@@ -23,6 +23,7 @@ int Func(int i,int j)
 int main()
 {
     setlocale(LC_ALL, "rus");
+    system("color 8F");
     fstream text;
     ofstream file;
     file.open("output.txt");

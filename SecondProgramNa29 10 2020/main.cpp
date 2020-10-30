@@ -54,7 +54,7 @@ int main()
         }
     }
     file<<k;
-    cout<< ""<<endl;
+    cout<< "Посмотрите файл OUTPUT"<<endl;
     text.close();
     file.close();
     return 0;

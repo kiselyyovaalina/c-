@@ -8,6 +8,8 @@ A o1,o2,v,e,m,s,otv;
 
 int main()
 {
+    setlocale(LC_ALL, "Rus");
+    system("color 8F");
     freopen("INPUT.TXT", "r", stdin);
     freopen("OUTPUT.TXT", "w", stdout);
     cin >> v;

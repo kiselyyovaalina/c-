@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1604230067 source:c:\users\nkis1\documents\code\2 программа комбинаторика\main.cpp
+	<iostream>
+	<fstream>
+	<string>
+
